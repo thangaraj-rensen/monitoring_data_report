@@ -72,7 +72,13 @@ if(st.button('Submit')):
                     key=None, 
                     on_select="ignore", 
                     selection_mode=('points', 'box', 'lasso'))
-
+hide_github_icon = """
+#GithubIcon {
+  visibility: hidden;
+}
+"""
+st.markdown(hide_github_icon, unsafe_allow_html=True)
+st.set_page_config(page_title="Monitoring Report")
 
 
 
