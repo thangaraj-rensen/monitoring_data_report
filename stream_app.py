@@ -45,6 +45,7 @@ if(st.button('Submit')):
         result = res_df.Subject_Heading.value_counts().to_frame().reset_index()
         result = result.rename(columns={"Subject_Heading":"Subject"})
         fig = px.bar(result,x="Subject",y="count")
+        fig.update_layout(title={'text': "Email Count",'y':0.9,'x':0.5,'xanchor': 'center','yanchor': 'top'})
         st.dataframe(result)
     elif column == "Day Wise Email Count":
         res_df = df.loc[(df["Date"] >= start) & (df["Date"] <= end)]
@@ -52,12 +53,14 @@ if(st.button('Submit')):
         result = res_df.Date.value_counts().to_frame().sort_values(by="Date").reset_index()
         # result = result.rename(columns={"Date":"Date","Date":"Count"})
         fig = px.bar(result,x="Date",y="count")
+        fig.update_layout(title={'text': "Day Wise Email Count",'y':0.9,'x':0.5,'xanchor': 'center','yanchor': 'top'})
         st.dataframe(result)
     elif column == "Server Wise Count":
         res_df = df.loc[(df["Date"] >= start) & (df["Date"]<=end)]
         st.subheader("Server wise count")
         result = res_df.Subject_Details.value_counts().to_frame().reset_index()
         fig = px.bar(result,x="Subject_Details",y="count")
+        fig.update_layout(title={'text': "Server Wise Count",'y':0.9,'x':0.5,'xanchor': 'center','yanchor': 'top'})
         # result = result.rename(columns={"index":"Subject_Details","Subject_Details":"Count"})
         st.dataframe(result)
 
@@ -67,6 +70,7 @@ if(st.button('Submit')):
         result = res_df.loc[res_df["Subject_Heading"]=="Service Down"]["Subject_Details"].value_counts().to_frame().reset_index()
         # result = result.rename(columns={"index":"Server","Subject_Details":"Count"})
         fig = px.bar(result,x="Subject_Details",y="count")
+        fig.update_layout(title={'text': "Server Down Count",'y':0.9,'x':0.5,'xanchor': 'center','yanchor': 'top'})
 
     
     st.plotly_chart(fig, use_container_width=False,
