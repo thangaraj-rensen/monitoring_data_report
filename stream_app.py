@@ -71,6 +71,7 @@ if(st.button('Submit')):
         # result = result.rename(columns={"index":"Server","Subject_Details":"Count"})
         fig = px.bar(result,x="Subject_Details",y="count")
         fig.update_layout(title={'text': "Server Down Count",'y':0.9,'x':0.5,'xanchor': 'center','yanchor': 'top'})
+        st.dataframe(result)
 
     
     st.plotly_chart(fig, use_container_width=False,
