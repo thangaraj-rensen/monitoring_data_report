@@ -3,6 +3,8 @@ import streamlit as st
 import plotly.express as px
 
 
+st.set_page_config(page_title = "Monitoring Report")
+
 # Title
 st.title("Monitoring mail data report")
 
