@@ -55,7 +55,7 @@ if(st.button('Submit')):
         fig = px.bar(result,x="Date",y="count",title="Day Wise Email Count")
         fig.update_layout(title={'text': "Day Wise Email Count",'y':0.9,'x':0.5,'xanchor': 'center','yanchor': 'top'})
         st.dataframe(result)
-        st.text(f"The average email count per day is : {res_df['Date'].value_counts().mean()}")
+        st.text(f"The average email count per day is : {round(res_df['Date'].value_counts().mean())}")
 
     elif column == "Server Wise Count":
         res_df = df.loc[(df["Date"] >= start) & (df["Date"]<=end)]
