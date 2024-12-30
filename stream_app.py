@@ -65,12 +65,12 @@ if(st.button('Submit')):
         fig.update_layout(title={'text': "Server Wise Count",'y':0.9,'x':0.5,'xanchor': 'center','yanchor': 'top'})
         st.dataframe(result)
 
-    elif column == "Server Down Count":
+    elif column == "Service Down Count":
         res_df = df.loc[(df["Date"] >= start) & (df["Date"]<=end)]
-        st.subheader("Server Down Count")
+        st.subheader("Service Down Count")
         result = res_df.loc[res_df["Subject_Heading"]=="Service Down"]["Subject_Details"].value_counts().to_frame().reset_index()
         fig = px.bar(result,x="Subject_Details",y="count",title="Server Down Count")
-        fig.update_layout(title={'text': "Server Down Count",'y':0.9,'x':0.5,'xanchor': 'center','yanchor': 'top'})
+        fig.update_layout(title={'text': "Service Down Count",'y':0.9,'x':0.5,'xanchor': 'center','yanchor': 'top'})
         st.dataframe(result)
 
     
@@ -79,14 +79,7 @@ if(st.button('Submit')):
                     key=None, 
                     on_select="ignore", 
                     selection_mode=('points', 'box', 'lasso'))
-    
 
-# hide_github_icon = """
-
-# .css-1jc7ptx, .e1ewe7hr3, .viewerBadge_container__1QSob, .styles_viewerBadge__1yB5_, .viewerBadge_link__1S137, .viewerBadge_text__1JaDK{ display: none; } #MainMenu{ visibility: hidden; } footer { visibility: hidden; } header { visibility: hidden; }
-# """
-# st.markdown(hide_github_icon, unsafe_allow_html=True)
-# st.set_page_config(page_title="Monitoring Report")
 
 
 
