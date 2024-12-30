@@ -36,7 +36,7 @@ end_date = st.date_input("Enter the end date in YYYY/MM/DD format")
 start = pd.to_datetime(start_date)
 end = pd.to_datetime(end_date)
 
-column = st.selectbox("Select the data to be displayed", ["Email Count","Day Wise Email Count","Server Wise Count","Server Down Count"])
+column = st.selectbox("Select the data to be displayed", ["Email Count","Day Wise Email Count","Server Wise Count","Service Down Count"])
 
 if(st.button('Submit')):
     if column == "Email Count":
