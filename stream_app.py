@@ -68,8 +68,12 @@ if(st.button('Submit')):
     elif column == "Service Down Count":
         res_df = df.loc[(df["Date"] >= start) & (df["Date"]<=end)]
         st.subheader("Service Down Count")
-        result = res_df.loc[res_df["Subject_Heading"]=="Service Down"]["Subject_Details"].value_counts().to_frame().reset_index()
-        fig = px.bar(result,x="Subject_Details",y="count",title="Server Down Count")
+        result = res_df.loc[(res_df["Subject_Heading"]=="Service Down") & 
+                            (res_df["Subject_Heading"]=="Device Down") & 
+                            (res_df["Subject_Heading"]=="Resource Down") &
+                            (res_df["Subject_Heading"]=="Server Down") &
+                            (res_df["Subject_Heading"]=="Interface Down")]["Subject_Details"].value_counts().to_frame().reset_index()
+        fig = px.bar(result,x="Subject_Details",y="count",title="Service Down Count")
         fig.update_layout(title={'text': "Service Down Count",'y':0.9,'x':0.5,'xanchor': 'center','yanchor': 'top'})
         st.dataframe(result)
 
