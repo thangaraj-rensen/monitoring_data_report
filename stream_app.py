@@ -39,7 +39,7 @@ end = pd.to_datetime(end_date)
 column = st.selectbox("Select the data to be displayed", ["Email Count",
                                                           "Day Wise Email Count",
                                                           "Server Wise Count",
-                                                          "Server Down List",
+                                                          "Service Down Count",
                                                           "Remote Monitoring Emails Count"])
 
 
