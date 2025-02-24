@@ -85,6 +85,7 @@ if(st.button('Submit')):
         result = df_result['Date'].value_counts().to_frame().sort_values(by="Date").reset_index()
         fig = px.bar(result,x="Date",y="count")
         st.dataframe(df_result)
+        st.dataframe(result)
 
     
     st.plotly_chart(fig, use_container_width=False,
