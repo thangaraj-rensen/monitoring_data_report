@@ -36,7 +36,12 @@ end_date = st.date_input("Enter the end date in YYYY/MM/DD format")
 start = pd.to_datetime(start_date)
 end = pd.to_datetime(end_date)
 
-column = st.selectbox("Select the data to be displayed", ["Email Count","Day Wise Email Count","Server Wise Count","Service Down Count"])
+column = st.selectbox("Select the data to be displayed", ["Email Count",
+                                                          "Day Wise Email Count",
+                                                          "Server Wise Count",
+                                                          "Server Down List",
+                                                          "Remote Monitoring Emails Count"])
+
 
 if(st.button('Submit')):
     if column == "Email Count":
@@ -72,6 +77,14 @@ if(st.button('Submit')):
         fig = px.bar(result,x="Subject_Details",y="count",title="Service Down Count")
         fig.update_layout(title={'text': "Service Down Count",'y':0.9,'x':0.5,'xanchor': 'center','yanchor': 'top'})
         st.dataframe(result)
+    
+    elif column == "Remote Monitoring Emails Count":
+        res_df = df.loc[(df["Date"] >= start) & (df["Date"]<=end)]
+        st.subheader("Remote Monitoring Emails Count")
+        df_result = res_df.loc[res_df["Subject_Heading"].str.contains("Remote")]
+        result = df_result['Date'].value_counts().to_frame().sort_values(by="Date").reset_index()
+        fig = px.bar(result,x="Date",y="count")
+        st.dataframe(df_result)
 
     
     st.plotly_chart(fig, use_container_width=False,
