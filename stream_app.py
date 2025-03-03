@@ -81,7 +81,7 @@ if(st.button('Submit')):
     elif column == "Remote Monitoring Emails Count":
         res_df = df.loc[(df["Date"] >= start) & (df["Date"]<=end)]
         st.subheader("Remote Monitoring Emails Count")
-        df_result = res_df.loc[res_df["Subject_Heading"].str.contains("Remote")]
+        df_result = res_df.loc[res_df["Subject_Heading"].str.contains("Remote")].value_counts().to_frame().reset_index()
         result = df_result['Date'].value_counts().to_frame().sort_values(by="Date").reset_index()
         fig = px.bar(result,x="Date",y="count")
         st.dataframe(df_result)
